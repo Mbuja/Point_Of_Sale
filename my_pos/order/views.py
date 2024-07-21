@@ -1,7 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
-
+from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.decorators import action 
+from .models import Person
+from .serializers import PersonSerializer
 # Create your views here.
+
+class PersonViewSet(viewsets.ModelViewSet):
+    #The endpiont to allow users to be views
+
+    queryset = Person.objects.all()
+    serializer_class = PersonSerializer
+
 
 def index(request):
     return HttpResponse("<h1>This is the orders page </h1>")
